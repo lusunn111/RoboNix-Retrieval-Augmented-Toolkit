@@ -1,0 +1,13 @@
+datasets:
+  libero_spatial_no_noops:
+    description: "LIBERO Spatial dataset (modified for OpenVLA)"
+    version: "1.0.0"
+  libero_object_no_noops:
+    description: "LIBERO Object dataset (modified for OpenVLA)"
+    version: "1.0.0"
+  libero_goal_no_noops:
+    description: "LIBERO Goal dataset (modified for OpenVLA)"
+    version: "1.0.0"
+  libero_10_no_noops:
+    description: "LIBERO 10 dataset (modified for OpenVLA)"
+    version: "1.0.0"

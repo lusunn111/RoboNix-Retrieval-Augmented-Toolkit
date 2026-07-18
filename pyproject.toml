@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robonix-retrieval-augmented-service"
+version = "0.1.0"
+description = "Organized standalone snapshot of the HeiSD retrieval-augmented execution implementation"
+requires-python = ">=3.10"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements/requirements.txt"]}
+
+[tool.setuptools]
+py-modules = ["service_bootstrap"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["modules*", "scripts*", "utils*"]
+exclude = ["vendor*", "benchmarks*", "tests*"]

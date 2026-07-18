@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this toolkit, please cite the associated HeiSD / RT-Cache paper and software release."
+title: "RoboNix Retrieval-Augmented Toolkit"
+type: software
+version: 0.1.0
+date-released: 2026-07-18
+authors:
+  - family-names: "Mao"
+    given-names: "Zhihao"
+  - family-names: "He"
+    given-names: "Huiru"
+  - family-names: "Zheng"
+    given-names: "Zihao"
+repository-code: "https://github.com/lusunn111/RoboNix-Retrieval-Augmented-Toolkit"
+abstract: "A reusable experience-memory service for embodied agents."

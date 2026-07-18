@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# 虚拟环境
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 模型文件
+*.png
+*.pth
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+*.h5
+*.pb
+*.onnx
+backbone_models/**/*.pth
+backbone_models/**/*.bin
+backbone_models/**/*.safetensors
+backbone_models/**/*.ckpt
+backbone_models/**/pytorch_model.bin
+backbone_models/**/model.safetensors
+backbone_models/model_link.txt
+
+# 数据集文件
+*.npz
+*.npy
+*.pkl
+*.pickle
+*.hdf5
+dataset/**/*.npz
+dataset/**/*.npy
+dataset/**/*.pkl
+dataset/**/*.hdf5
+dataset/dataset_link.txt
+
+# 实验和日志
+exp/*.npz
+exp/*.json
+experiments/logs/**/*
+rollouts/**/*
+TGT_DIR/**/*.txt
+TGT_DIR/**/*.json
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+*.cache
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.bak
+
+# 大文件
+*.tar
+*.tar.gz
+*.zip
+*.rar
+
+# 特定目录
+openvla/specdecoding/

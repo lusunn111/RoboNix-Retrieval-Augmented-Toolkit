@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
+  <title id="title">Retrieval-Augmented Toolkit architecture</title>
+  <desc id="desc">Offline experience database construction and online two-view experience retrieval with memory updates.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#faf9ff"/><stop offset="1" stop-color="#f0fbfa"/></linearGradient>
+    <filter id="shadow" x="-15%" y="-20%" width="130%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#241749" flood-opacity="0.10"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7357d8"/></marker>
+    <marker id="arrow-teal" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#169b8b"/></marker>
+    <style>
+      .title{font-family:Arial,sans-serif;font-size:34px;font-weight:700;fill:#1b1735}.subtitle{font-family:Arial,sans-serif;font-size:17px;font-weight:500;fill:#6d6980}
+      .section{font-family:Arial,sans-serif;font-size:18px;font-weight:700;letter-spacing:1.5px}.node{font-family:Arial,sans-serif;font-size:17px;font-weight:650;fill:#231d42;text-anchor:middle}
+      .small{font-family:Arial,sans-serif;font-size:14px;font-weight:500;fill:#746f86;text-anchor:middle}.pill{font-family:Arial,sans-serif;font-size:15px;font-weight:650;text-anchor:middle}
+    </style>
+  </defs>
+  <rect width="1600" height="720" rx="30" fill="url(#background)"/>
+  <text x="70" y="64" class="title">Retrieval-Augmented Toolkit</text>
+  <text x="70" y="96" class="subtitle">Convert execution history into a persistent, searchable, and updatable experience memory</text>
+
+  <rect x="55" y="135" width="1490" height="220" rx="24" fill="#ffffff" stroke="#ddd6f8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="85" y="175" class="section" fill="#6a4ec6">OFFLINE EXPERIENCE DATABASE</text>
+  <g fill="#f5f1ff" stroke="#b9a8ed" stroke-width="2">
+    <rect x="85" y="220" width="215" height="82" rx="17"/><rect x="385" y="220" width="215" height="82" rx="17"/>
+    <rect x="685" y="220" width="215" height="82" rx="17"/><rect x="985" y="220" width="215" height="82" rx="17"/>
+  </g>
+  <text x="192" y="268" class="node">Robot History</text>
+  <text x="492" y="268" class="node">Two-View Encoder</text>
+  <text x="792" y="268" class="node">4,352D Embedding</text>
+  <text x="1092" y="268" class="node">Task Vector Index</text>
+  <path d="M300 261H375M600 261H675M900 261H975" fill="none" stroke="#7357d8" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="1290" y="202" width="205" height="118" rx="24" fill="#e9e3ff" stroke="#a98fe8" stroke-width="2"/>
+  <text x="1392" y="250" class="node">Qdrant Memory</text>
+  <text x="1392" y="292" class="small">Vectors + action payloads</text>
+  <path d="M1200 261H1280" fill="none" stroke="#7357d8" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="55" y="390" width="1490" height="270" rx="24" fill="#ffffff" stroke="#cfe9e5" stroke-width="2" filter="url(#shadow)"/>
+  <text x="85" y="430" class="section" fill="#168b7e">ONLINE EXPERIENCE RETRIEVAL</text>
+  <g fill="#effbf9" stroke="#83cfc4" stroke-width="2">
+    <rect x="85" y="478" width="215" height="82" rx="17"/><rect x="390" y="478" width="215" height="82" rx="17"/>
+    <rect x="695" y="478" width="215" height="82" rx="17"/><rect x="1000" y="478" width="215" height="82" rx="17"/>
+  </g>
+  <text x="192" y="526" class="node">Current Views + Task</text>
+  <text x="497" y="526" class="node">Embedding Service</text>
+  <text x="802" y="526" class="node">Top-K Retrieval</text>
+  <text x="1107" y="526" class="node">4×7 Action Trajectory</text>
+  <path d="M300 519H380M605 519H685M910 519H990" fill="none" stroke="#169b8b" stroke-width="3" marker-end="url(#arrow-teal)"/>
+  <rect x="1310" y="478" width="185" height="82" rx="41" fill="#dff5ef"/>
+  <text x="1402" y="516" class="pill" fill="#117765">Verify / Execute</text>
+  <text x="1402" y="538" class="pill" fill="#117765">or Fall Back</text>
+  <path d="M1215 519H1300" fill="none" stroke="#169b8b" stroke-width="3" marker-end="url(#arrow-teal)"/>
+  <path d="M1402 478C1402 406 1455 390 1492 342" fill="none" stroke="#169b8b" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#arrow-teal)"/>
+  <text x="1360" y="400" class="small">Incremental memory update</text>
+  <text x="790" y="620" class="small">HeiSD / RT-Cache and additional encoders, indexes, and retrieval policies share replaceable interfaces</text>
+</svg>
