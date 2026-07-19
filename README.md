@@ -27,8 +27,27 @@ fallback path. The release supports single-view retrieval and a two-view Mix
 pipeline, and includes reusable indexing, serving, maintenance, and benchmark
 workflows.
 
+<a id="performance-snapshot"></a>
+## 📊 Performance Snapshot
+
+The experience-memory path has been evaluated as part of verified hybrid
+execution on both token-based and diffusion-based VLA models. Results report
+task success rate (SR) and end-to-end speedup over the original model.
+
+| Model | LIBERO suite | SR | Speedup |
+| --- | --- | ---: | ---: |
+| OpenVLA | Goal | 73.0% | 2.38× |
+| OpenVLA | Object | 71.0% | **2.45×** |
+| OpenVLA | Spatial | 78.0% | 1.90× |
+| OpenVLA | Long | 47.0% | 1.79× |
+| π0 | Goal | 93.33% | 2.97× |
+| π0 | Object | **98.33%** | 2.21× |
+| π0 | Spatial | 94.67% | 2.47× |
+| π0 | Long | 78.33% | **3.01×** |
+
 ## 📚 Table of Contents
 
+- [📊 Performance Snapshot](#performance-snapshot)
 - [📰 News](#news)
 - [⚡ System Capability and Results](#system-results)
 - [🧠 Architecture Overview](#architecture)
