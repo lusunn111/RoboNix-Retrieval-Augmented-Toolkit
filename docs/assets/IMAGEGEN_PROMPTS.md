@@ -1,8 +1,8 @@
 # Architecture Image Prompt
 
-Generate the image in a 16:9 landscape format. Save the reviewed result as
-`retrieval-memory-overview-v2.png` in this directory. The README already contains
-the replacement slot.
+The current README asset was generated from the prompt below and saved as
+`retrieval-memory-overview-v2.png`. Reuse this prompt when regenerating or
+iterating on the architecture figure.
 
 ## Web ImageGen prompt
 
@@ -47,4 +47,3 @@ All modules and arrows must stay fully inside the frame. Use large, readable san
 - Offline database construction and online retrieval are visually distinct.
 - The update loop and target-policy fallback are both clear but secondary.
 - The complete diagram remains readable when displayed at 80% README width.
-

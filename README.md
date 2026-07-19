@@ -53,14 +53,14 @@ The project supports both single-view retrieval and a two-view Mix pipeline that
 ## 🧠 Architecture Overview
 
 <!--
-IMAGEGEN SLOT
-Final asset: docs/assets/retrieval-memory-overview-v2.png
-Prompt: docs/assets/IMAGEGEN_PROMPTS.md
-Keep the current editable SVG until the generated PNG is reviewed and committed.
+IMAGEGEN ASSET
+Active asset: docs/assets/retrieval-memory-overview-v2.png
+Regeneration prompt: docs/assets/IMAGEGEN_PROMPTS.md
+The original SVG is retained as an editable fallback.
 -->
 
 <div align="center">
-  <img width="96%" alt="RoboNix retrieval-augmented memory architecture" src="docs/assets/retrieval-architecture.svg" />
+  <img width="96%" alt="RoboNix retrieval-augmented memory architecture" src="docs/assets/retrieval-memory-overview-v2.png" />
   <p><b>Figure 1.</b> Offline experience-memory construction and online two-view retrieval with policy fallback and continuous memory updates.</p>
 </div>
 
