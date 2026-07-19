@@ -2,7 +2,7 @@
 
 # RoboNix Retrieval-Augmented Toolkit
 
-**A reusable HeiSD / RT-Cache experience-memory service for embodied agents**
+**A reusable retrieval-based experience-memory and embodied-execution service**
 
 [中文文档](README-CN.md) · [🚀 Quick Start](#quick-start) · [📦 Dataset](#datasets) · [🗄️ Build Database](#build-index) · [📝 Citation](#citation)
 
@@ -15,7 +15,7 @@
 
 </div>
 
-The RoboNix Retrieval-Augmented Toolkit packages HeiSD / RT-Cache as an
+The RoboNix Retrieval-Augmented Toolkit packages retrieval-based embodied execution as an
 independently runnable experience-memory service. It converts historical robot
 demonstrations into multimodal embeddings, stores vectors and action payloads
 in Qdrant, retrieves trajectories matching the current scene and instruction,
@@ -27,6 +27,7 @@ The project supports both single-view retrieval and a two-view Mix pipeline that
 
 - [📰 News](#news)
 - [🧠 Architecture Overview](#architecture)
+- [🔌 RoboNix Integration and Outlook](#robonix-integration)
 - [🧪 Validated Release](#validated-release)
 - [⚙️ Requirements](#requirements)
 - [🚀 Quick Start](#quick-start)
@@ -79,6 +80,23 @@ The single-view pipeline uses a third-person image. The Mix pipeline concatenate
 | Wrist-view DINOv2       |           1,024 |
 | Wrist-view SigLIP       |           1,152 |
 | **Mix embedding** | **4,352** |
+
+<a id="robonix-integration"></a>
+## 🔌 RoboNix Integration and Outlook
+
+This toolkit is delivered as an independent Skill Toolkit and connects to RoboNix as an experience-memory service and a reusable custom service. Scene observations and task context form a structured retrieval request; Atlas discovers the provider, Nexus carries multimodal references, and Pilot consumes the retrieved trajectories without embedding database logic into the RoboNix core.
+
+<div align="center">
+  <img width="96%" alt="RoboNix system architecture" src="docs/assets/robonix-system-architecture.png" />
+  <p><b>Figure 2.</b> System-level integration points for reusable memory services, custom services, and VLA-based user skills.</p>
+</div>
+
+<div align="center">
+  <img width="72%" alt="RoboNix Skill Toolkit stack" src="docs/assets/robonix-skill-toolkit-stack.png" />
+  <p><b>Figure 3.</b> Skill Toolkit is distributed above the RoboNix runtime and preserves the framework, HAL, libraries, and kernel boundaries.</p>
+</div>
+
+Looking forward, the service can evolve toward continuously updated robot memory with pluggable encoders, hierarchical indexes, redundancy compression, expiration policies, and safety-aware trajectory reuse across tasks and robot platforms.
 
 <a id="validated-release"></a>
 ## 🧪 Validated Release
@@ -459,7 +477,7 @@ Measure cold start separately from steady-state performance. The retrieval servi
 └── service_bootstrap.py           # Vendor activation and guarded runner
 ```
 
-`vendor/rtcache/` is the canonical import-compatible RT-Cache implementation. Top-level directories provide an engineering-oriented view of the data, service, maintenance, and benchmark workflows. SpecVLA validation and rebuttal sources are canonical under their respective benchmark directories.
+`vendor/rtcache/` is the canonical import-compatible retrieval implementation. Top-level directories provide an engineering-oriented view of the data, service, maintenance, and benchmark workflows. Validation and rebuttal sources are canonical under their respective benchmark directories.
 
 <a id="roadmap"></a>
 ## 🗺️ Roadmap
