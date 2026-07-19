@@ -237,15 +237,15 @@ curl -X POST http://127.0.0.1:5003/pipeline \
 <a id="citation"></a>
 ## 📝 引用
 
-如果本工具包对你的研究有帮助，欢迎给仓库一个 Star ⭐，并引用 HeiSD。论文
-公开后会继续补充正式会议和公开链接信息。
+如果本工具包对你的研究有帮助，欢迎给仓库一个 Star ⭐，并引用本软件仓库：
 
 ```bibtex
-@misc{zheng2026heisd,
-  title  = {HeiSD: Hybrid Speculative Decoding for Embodied Vision-Language-Action Models with Kinematic Awareness},
-  author = {Zheng, Zihao and Mao, Zhihao and Tian, Sicheng and Chen, Jiayu and Li, Maoliang and Sun, Xinhao and Zhang, Zhaobo and Liu, Xuanzhe and Cao, Donggang and Mei, Hong and Chen, Xiang},
-  year   = {2026},
-  note   = {Manuscript}
+@software{mao2026robonix_retrieval_augmented_toolkit,
+  author  = {Mao, Zhihao and He, Huiru and Zheng, Zihao},
+  title   = {RoboNix Retrieval-Augmented Toolkit},
+  year    = {2026},
+  version = {0.1.0},
+  url     = {https://github.com/lusunn111/RoboNix-Retrieval-Augmented-Toolkit}
 }
 ```
 

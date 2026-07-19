@@ -476,15 +476,15 @@ Measure cold start separately from steady-state performance. The retrieval servi
 ## 📝 Citation
 
 If this toolkit supports your research, please consider giving the repository a
-star ⭐ and citing the HeiSD manuscript. Venue and public-paper metadata will be
-updated after the paper is released.
+star ⭐ and citing this software repository:
 
 ```bibtex
-@misc{zheng2026heisd,
-  title  = {HeiSD: Hybrid Speculative Decoding for Embodied Vision-Language-Action Models with Kinematic Awareness},
-  author = {Zheng, Zihao and Mao, Zhihao and Tian, Sicheng and Chen, Jiayu and Li, Maoliang and Sun, Xinhao and Zhang, Zhaobo and Liu, Xuanzhe and Cao, Donggang and Mei, Hong and Chen, Xiang},
-  year   = {2026},
-  note   = {Manuscript}
+@software{mao2026robonix_retrieval_augmented_toolkit,
+  author  = {Mao, Zhihao and He, Huiru and Zheng, Zihao},
+  title   = {RoboNix Retrieval-Augmented Toolkit},
+  year    = {2026},
+  version = {0.1.0},
+  url     = {https://github.com/lusunn111/RoboNix-Retrieval-Augmented-Toolkit}
 }
 ```
 
