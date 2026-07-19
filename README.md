@@ -4,13 +4,14 @@
 
 **A reusable HeiSD / RT-Cache experience-memory service for embodied agents**
 
-[Quick Start](#quick-start) · [Dataset](#dataset-and-checkpoint-sources) · [Build Database](#step-5-build-the-retrieval-index) · [API](#step-6-start-the-retrieval-service) · [Roadmap](TODO.md)
+[中文文档](README-CN.md) · [🚀 Quick Start](#quick-start) · [📦 Dataset](#datasets) · [🗄️ Build Database](#build-index) · [📝 Citation](#citation)
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.2-EE4C2C?logo=pytorch&logoColor=white)
 ![Qdrant](https://img.shields.io/badge/Qdrant-1.16-DC244C)
 ![Status](https://img.shields.io/badge/two--view_pipeline-verified-1f9d72)
 [![License](https://img.shields.io/badge/license-MulanPSL--2.0-red)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/lusunn111/RoboNix-Retrieval-Augmented-Toolkit?style=flat&logo=github)](https://github.com/lusunn111/RoboNix-Retrieval-Augmented-Toolkit/stargazers)
 
 </div>
 
@@ -22,9 +23,46 @@ and returns candidates for verified execution or policy fallback.
 
 The project supports both single-view retrieval and a two-view Mix pipeline that combines third-person and wrist-camera observations. It also includes BehaviorRetrieval and VINN baselines, SpecVLA validation code, database maintenance utilities, and data-processing workflows for LIBERO and other robot datasets.
 
-## Architecture
+## 📚 Table of Contents
 
-![Retrieval-augmented architecture](docs/assets/retrieval-architecture.svg)
+- [📰 News](#news)
+- [🧠 Architecture Overview](#architecture)
+- [🧪 Validated Release](#validated-release)
+- [⚙️ Requirements](#requirements)
+- [🚀 Quick Start](#quick-start)
+- [📦 Dataset and Checkpoint Sources](#datasets)
+- [🗄️ Build the Retrieval Index](#build-index)
+- [🌐 Start the Retrieval Service](#retrieval-service)
+- [🗺️ Roadmap](#roadmap)
+- [📝 Citation](#citation)
+- [🤝 Contributors](#contributors)
+- [📄 License](#license)
+
+<a id="news"></a>
+## 📰 News
+
+- **2026-07-19**: 🆕 Reorganized the public release with bilingual documentation,
+  an integrated roadmap and citation, reproducible requirements, and a refreshed
+  experience-memory architecture overview.
+- **2026-07-18**: 🔥 Validated the complete two-view image → embedding → Qdrant
+  → 4×7 action-trajectory request path from the independent repository root.
+- **2026-07-18**: 🗄️ Strictly checked 39 Mix collections containing 273,465
+  experience points with 4,352-dimensional cosine vectors and action payloads.
+
+<a id="architecture"></a>
+## 🧠 Architecture Overview
+
+<!--
+IMAGEGEN SLOT
+Final asset: docs/assets/retrieval-memory-overview-v2.png
+Prompt: docs/assets/IMAGEGEN_PROMPTS.md
+Keep the current editable SVG until the generated PNG is reviewed and committed.
+-->
+
+<div align="center">
+  <img width="96%" alt="RoboNix retrieval-augmented memory architecture" src="docs/assets/retrieval-architecture.svg" />
+  <p><b>Figure 1.</b> Offline experience-memory construction and online two-view retrieval with policy fallback and continuous memory updates.</p>
+</div>
 
 The validated two-view Mix path stores both searchable vectors and action
 payloads in Qdrant; it does not require MongoDB. MongoDB remains available for
@@ -42,7 +80,8 @@ The single-view pipeline uses a third-person image. The Mix pipeline concatenate
 | Wrist-view SigLIP       |           1,152 |
 | **Mix embedding** | **4,352** |
 
-## Validated Release
+<a id="validated-release"></a>
+## 🧪 Validated Release
 
 The release was validated on an NVIDIA A100 40GB server using an existing
 modified LIBERO RLDS dataset and a prebuilt Qdrant Mix index.
@@ -55,13 +94,15 @@ modified LIBERO RLDS dataset and a prebuilt Qdrant Mix index.
 | Database contents | 273,465 experience points |
 | End-to-end request | Two images + instruction returned a 4×7 action trajectory |
 
-## Quick Start
+<a id="quick-start"></a>
+## 🚀 Quick Start
 
 ```bash
 conda create -n robonix-retrieval python=3.10 -y
 conda activate robonix-retrieval
 python -m pip install --upgrade pip
-python -m pip install -e .
+python -m pip install -r requirements.txt
+python -m pip install -e . --no-deps
 
 python -m pytest -q tests
 python -m scripts.run --help
@@ -79,7 +120,8 @@ Start Qdrant, then run the two-view embedding and retrieval services in separate
 terminals or tmux sessions. The detailed commands are provided below. The
 repository does not ship models, datasets, populated databases, or outputs.
 
-## Dataset and Checkpoint Sources
+<a id="datasets"></a>
+## 📦 Dataset and Checkpoint Sources
 
 | Asset | Source | Default placement |
 | --- | --- | --- |
@@ -93,7 +135,8 @@ instructions, the current 7D action, and the next three 7D actions. A public
 release may publish a prebuilt index separately, but the repository itself
 contains only the reproducible builder.
 
-## Requirements
+<a id="requirements"></a>
+## ⚙️ Requirements
 
 | Component        | Requirement                                                                                      |
 | ---------------- | ------------------------------------------------------------------------------------------------ |
@@ -113,22 +156,26 @@ The repository does not include model weights, datasets, populated databases, or
 - writable data, image, cache, log, and Qdrant backup directories;
 - robot-side controllers when running real-hardware experiments.
 
-## Step 1: Installation
+## 🧰 Step 1: Installation
 
 Clone the project and run all commands from the repository root:
 
 ```bash
 git clone https://github.com/lusunn111/RoboNix-Retrieval-Augmented-Toolkit.git
-cd Robonix-Retrieval-Augmented-Toolkit
+cd RoboNix-Retrieval-Augmented-Toolkit
 
 conda create -n rt-cache python=3.10 -y
 conda activate rt-cache
 
 python -m pip install --upgrade pip
-python -m pip install -e .
+python -m pip install -r requirements.txt
+python -m pip install -e . --no-deps
 ```
 
-Pinned dependencies are listed in `requirements/requirements.txt`. Flash Attention is CUDA- and compiler-sensitive; if the regular installation fails, install the compatible PyTorch build first and then build Flash Attention separately:
+The root `requirements.txt` is the reproducible installation entry and delegates
+to `requirements/requirements.txt`. Flash Attention is CUDA- and compiler-sensitive;
+if installation fails, install the compatible PyTorch build first and then build
+Flash Attention separately:
 
 ```bash
 python -m pip install packaging ninja
@@ -142,7 +189,7 @@ python -c "import service_bootstrap as s; print(s.activate_vendor())"
 python -m scripts.run --help
 ```
 
-## Step 2: Start Qdrant and Optional MongoDB
+## 🗄️ Step 2: Start Qdrant and Optional MongoDB
 
 The validated two-view Mix path requires only Qdrant. Start it with persistent
 storage:
@@ -175,7 +222,7 @@ python -c "from pymongo import MongoClient; print(MongoClient('mongodb://localho
 
 Use authenticated connections, private networks, access controls, backups, and externally managed secrets for shared or production deployments. The example configuration is intended for local development.
 
-## Step 3: Configuration
+## 🔧 Step 3: Configuration
 
 Copy the environment template and customize it:
 
@@ -216,7 +263,7 @@ The centralized configuration implementation is in `configs/rtcache/rt_cache_con
 grep -R "/home/\|PATH_TO" scripts vendor/rtcache/scripts configs
 ```
 
-## Step 4: Start the Embedding Service
+## 🧠 Step 4: Start the Embedding Service
 
 ### Single-view service
 
@@ -267,7 +314,8 @@ curl -X POST http://localhost:9021/predict \
 
 Do not run multiple model workers unless enough GPU memory is available. Each worker initializes its own model state.
 
-## Step 5: Build the Retrieval Index
+<a id="build-index"></a>
+## 🗄️ Step 5: Build the Retrieval Index
 
 Start the embedding service before processing a dataset. The following example embeds LIBERO-Goal observations and inserts them into task-specific Qdrant collections:
 
@@ -303,7 +351,8 @@ python -m scripts.run \
 
 Mix collections use names such as `libero_goal_mix_task_0`. Options including `--clear_db` and `--clear_all` delete existing collections and are destructive; verify the Qdrant target and backup required data before using them.
 
-## Step 6: Start the Retrieval Service
+<a id="retrieval-service"></a>
+## 🌐 Step 6: Start the Retrieval Service
 
 ### Single-view LIBERO retrieval
 
@@ -350,7 +399,7 @@ curl -X POST http://localhost:5003/pipeline \
 
 Both variants expose `GET /health`, `GET /stats`, and `POST /pipeline`. A successful pipeline response includes retrieval metadata and fields such as `rtcache_trajectory` and `averaged_trajectory`. Treat returned actions as untrusted candidates: validate dimensions, limits, freshness, robot state, and collision constraints before execution on physical hardware.
 
-## Service Ports
+## 🔌 Service Ports
 
 | Service               | Default port | Purpose                                                                       |
 | --------------------- | -----------: | ----------------------------------------------------------------------------- |
@@ -365,7 +414,7 @@ Both variants expose `GET /health`, `GET /stats`, and `POST /pipeline`. A succes
 
 Port 5002 is used by more than one preserved workflow. Assign distinct ports when data collection and retrieval services run concurrently.
 
-## Benchmarking Guidelines
+## 📊 Benchmarking Guidelines
 
 Compare RT-Cache with VINN, BehaviorRetrieval, and non-retrieval baselines using the same observations, task split, control frequency, and robot or simulator configuration. At minimum, report:
 
@@ -379,7 +428,7 @@ Compare RT-Cache with VINN, BehaviorRetrieval, and non-retrieval baselines using
 
 Measure cold start separately from steady-state performance. The retrieval services preload collection payloads into memory, so startup time and host-memory usage scale with the database. Network transfer, image encoding, database placement, and robot control-loop latency must be included in end-to-end measurements.
 
-## Repository Layout
+## 🗂️ Repository Layout
 
 ```text
 .
@@ -401,8 +450,10 @@ Measure cold start separately from steady-state performance. The retrieval servi
 │   ├── specvla_validation/        # SpecVLA validation snapshot
 │   └── rebuttal/                  # FLASH/OpenPI rebuttal snapshot
 ├── configs/                       # Environment, database, and RT-Cache config
+├── requirements.txt               # Reproducible installation entry
 ├── requirements/                  # Python dependency pins
 ├── tests/                         # Layout and lazy-import tests
+├── docs/assets/                   # Architecture assets and the web ImageGen prompt
 ├── utils/                         # Database, embedding, and image utilities
 ├── vendor/rtcache/                # Canonical RT-Cache source tree
 └── service_bootstrap.py           # Vendor activation and guarded runner
@@ -410,14 +461,43 @@ Measure cold start separately from steady-state performance. The retrieval servi
 
 `vendor/rtcache/` is the canonical import-compatible RT-Cache implementation. Top-level directories provide an engineering-oriented view of the data, service, maintenance, and benchmark workflows. SpecVLA validation and rebuttal sources are canonical under their respective benchmark directories.
 
-## Contributors
+<a id="roadmap"></a>
+## 🗺️ Roadmap
+
+- [x] Publish an independently runnable source-only repository.
+- [x] Validate OpenVLA embedding, Qdrant retrieval, and a 4×7 action response.
+- [x] Adopt the RoboNix Mulan PSL v2 license and remove citation placeholders.
+- [ ] Publish a small public two-view example dataset and prebuilt Qdrant index.
+- [ ] Add container images and authenticated production API examples.
+- [ ] Add incremental memory deduplication, compression, and expiration policies.
+- [ ] Provide a versioned RoboNix service adapter.
+
+<a id="citation"></a>
+## 📝 Citation
+
+If this toolkit supports your research, please consider giving the repository a
+star ⭐ and citing the HeiSD manuscript. Venue and public-paper metadata will be
+updated after the paper is released.
+
+```bibtex
+@misc{zheng2026heisd,
+  title  = {HeiSD: Hybrid Speculative Decoding for Embodied Vision-Language-Action Models with Kinematic Awareness},
+  author = {Zheng, Zihao and Mao, Zhihao and Tian, Sicheng and Chen, Jiayu and Li, Maoliang and Sun, Xinhao and Zhang, Zhaobo and Liu, Xuanzhe and Cao, Donggang and Mei, Hong and Chen, Xiang},
+  year   = {2026},
+  note   = {Manuscript}
+}
+```
+
+<a id="contributors"></a>
+## 🤝 Contributors
 
 We thank [HuiruHe](https://github.com/HuiruHe) and
 [zhengzihaoPKU](https://github.com/zhengzihaoPKU) for their contributions to
 the toolkit. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the contributor policy.
 
-## Citation and License
+<a id="license"></a>
+## 📄 License
 
-Citation metadata is provided in `CITATION.cff`. The project is licensed under
-the Mulan Permissive Software License, Version 2 (Mulan PSL v2); see
-[LICENSE](LICENSE). Vendored components retain their included licenses.
+The project is licensed under the Mulan Permissive Software License, Version 2
+(Mulan PSL v2); see [LICENSE](LICENSE). Vendored components retain their included
+licenses.
