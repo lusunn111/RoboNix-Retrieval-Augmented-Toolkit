@@ -15,17 +15,13 @@
 
 </div>
 
-The RoboNix Retrieval-Augmented Toolkit provides an **Experience Memory and
-Reuse Skill** for existing embodied models. It turns historical robot execution
-data into searchable memory and supplies relevant action trajectories to the
-current policy, allowing useful experience to be reused without replacing the
-original model.
-
-Retrieved trajectories remain candidates rather than unconditional robot
-commands. They can be verified, executed, or rejected through the policy
-fallback path. The release supports single-view retrieval and a two-view Mix
-pipeline, and includes reusable indexing, serving, maintenance, and benchmark
-workflows.
+The **RoboNix Experience Memory and Reuse Skill** lets existing embodied models
+use historical execution experience during online decision-making instead of
+leaving it as offline data. It retrieves candidate actions that match the
+current scene and instruction, then uses verification and policy fallback to
+contain retrieval errors, reducing repeated inference without replacing the
+original policy. The Skill currently supports OpenVLA and π0, single-view and
+two-view Mix retrieval, and chunk-level hybrid verification.
 
 <a id="performance-snapshot"></a>
 ## 📊 Performance Snapshot
@@ -66,8 +62,8 @@ task success rate (SR) and end-to-end speedup over the original model.
 <a id="news"></a>
 ## 📰 News
 
-- **2026-07-19**: 🆕 Reframed the toolkit as a system-level experience memory and
-  reuse Skill, with capability results, model support, and bilingual documentation.
+- **2026-07-19**: 🆕 Released the system-level experience memory and reuse Skill
+  with capability results, model support, and bilingual documentation.
 - **2026-07-18**: 🔥 Validated the complete two-view image → embedding → Qdrant
   → 4×7 action-trajectory request path from the independent repository root.
 - **2026-07-18**: 🗄️ Strictly checked 39 Mix collections containing 273,465
@@ -130,16 +126,11 @@ The single-view pipeline uses a third-person image. The Mix pipeline concatenate
 <a id="robonix-integration"></a>
 ## 🔌 RoboNix Integration and Outlook
 
-This toolkit is delivered as an independent Skill Toolkit and connects to RoboNix as an experience-memory service and a reusable custom service. Scene observations and task context form a structured retrieval request; Atlas discovers the provider, Nexus carries multimodal references, and Pilot consumes the retrieved trajectories without embedding database logic into the RoboNix core.
+This Skill is an independently deployable RoboNix provider that maintains experience memory for embodied execution. Scene observations and task context form a structured retrieval request; Atlas discovers the provider, Nexus carries multimodal references, and Pilot consumes the retrieved trajectories without embedding database logic into the RoboNix core.
 
 <div align="center">
   <img width="96%" alt="RoboNix system architecture" src="docs/assets/robonix-system-architecture.png" />
   <p><b>Figure 2.</b> System-level integration points for reusable memory services, custom services, and VLA-based user skills.</p>
-</div>
-
-<div align="center">
-  <img width="72%" alt="RoboNix Skill Toolkit stack" src="docs/assets/robonix-skill-toolkit-stack.png" />
-  <p><b>Figure 3.</b> Skill Toolkit is distributed above the RoboNix runtime and preserves the framework, HAL, libraries, and kernel boundaries.</p>
 </div>
 
 Looking forward, the service can evolve toward continuously updated robot memory with pluggable encoders, hierarchical indexes, redundancy compression, expiration policies, and safety-aware trajectory reuse across tasks and robot platforms.
@@ -541,13 +532,13 @@ Measure cold start separately from steady-state performance. The retrieval servi
 <a id="citation"></a>
 ## 📝 Citation
 
-If this toolkit supports your research, please consider giving the repository a
+If this Skill supports your research, please consider giving the repository a
 star ⭐ and citing this software repository:
 
 ```bibtex
-@software{mao2026robonix_retrieval_augmented_toolkit,
+@software{mao2026robonix_experience_memory_reuse_skill,
   author  = {Mao, Zhihao and He, Huiru and Zheng, Zihao},
-  title   = {RoboNix Retrieval-Augmented Toolkit},
+  title   = {RoboNix Experience Memory and Reuse Skill},
   year    = {2026},
   version = {0.1.0},
   url     = {https://github.com/lusunn111/RoboNix-Retrieval-Augmented-Toolkit}
@@ -559,7 +550,7 @@ star ⭐ and citing this software repository:
 
 We thank [HuiruHe](https://github.com/HuiruHe) and
 [zhengzihaoPKU](https://github.com/zhengzihaoPKU) for their contributions to
-the toolkit. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the contributor policy.
+the Skill. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the contributor policy.
 
 <a id="license"></a>
 ## 📄 License
