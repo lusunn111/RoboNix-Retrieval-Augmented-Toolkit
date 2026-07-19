@@ -1,8 +1,8 @@
 <div align="center">
 
-# RoboNix Retrieval-Augmented Toolkit
+# RoboNix Experience Memory and Reuse Skill
 
-**A reusable retrieval-based experience-memory and embodied-execution service**
+**A system-level experience memory, retrieval, and action-reuse Skill for embodied models**
 
 [中文文档](README-CN.md) · [🚀 Quick Start](#quick-start) · [📦 Dataset](#datasets) · [🗄️ Build Database](#build-index) · [📝 Citation](#citation)
 
@@ -15,17 +15,22 @@
 
 </div>
 
-The RoboNix Retrieval-Augmented Toolkit packages retrieval-based embodied execution as an
-independently runnable experience-memory service. It converts historical robot
-demonstrations into multimodal embeddings, stores vectors and action payloads
-in Qdrant, retrieves trajectories matching the current scene and instruction,
-and returns candidates for verified execution or policy fallback.
+The RoboNix Retrieval-Augmented Toolkit provides an **Experience Memory and
+Reuse Skill** for existing embodied models. It turns historical robot execution
+data into searchable memory and supplies relevant action trajectories to the
+current policy, allowing useful experience to be reused without replacing the
+original model.
 
-The project supports both single-view retrieval and a two-view Mix pipeline that combines third-person and wrist-camera observations. It also includes BehaviorRetrieval and VINN baselines, SpecVLA validation code, database maintenance utilities, and data-processing workflows for LIBERO and other robot datasets.
+Retrieved trajectories remain candidates rather than unconditional robot
+commands. They can be verified, executed, or rejected through the policy
+fallback path. The release supports single-view retrieval and a two-view Mix
+pipeline, and includes reusable indexing, serving, maintenance, and benchmark
+workflows.
 
 ## 📚 Table of Contents
 
 - [📰 News](#news)
+- [⚡ System Capability and Results](#system-results)
 - [🧠 Architecture Overview](#architecture)
 - [🔌 RoboNix Integration and Outlook](#robonix-integration)
 - [🧪 Validated Release](#validated-release)
@@ -42,13 +47,35 @@ The project supports both single-view retrieval and a two-view Mix pipeline that
 <a id="news"></a>
 ## 📰 News
 
-- **2026-07-19**: 🆕 Reorganized the public release with bilingual documentation,
-  an integrated roadmap and citation, reproducible requirements, and a refreshed
-  experience-memory architecture overview.
+- **2026-07-19**: 🆕 Reframed the toolkit as a system-level experience memory and
+  reuse Skill, with capability results, model support, and bilingual documentation.
 - **2026-07-18**: 🔥 Validated the complete two-view image → embedding → Qdrant
   → 4×7 action-trajectory request path from the independent repository root.
 - **2026-07-18**: 🗄️ Strictly checked 39 Mix collections containing 273,465
   experience points with 4,352-dimensional cosine vectors and action payloads.
+
+<a id="system-results"></a>
+## ⚡ System Capability and Results
+
+From the RoboNix runtime perspective, this Skill is a stateful experience-memory
+provider. It converts historical observations and actions into reusable memory,
+retrieves candidate trajectories for the current task, and keeps verification
+and fallback between retrieval and physical execution.
+
+| System-level result | Current capability |
+| --- | --- |
+| Experience memory | **273,465** indexed robot-execution points |
+| Online retrieval scale | **39** Qdrant collections with **4,352D** two-view vectors |
+| Verified service response | Two images + instruction → **4×7** candidate action trajectory |
+| Hybrid embodied execution | More than **2×** acceleration on OpenVLA and nearly **3×** on π0 |
+
+### Supported models
+
+| Model family | Status | Scope |
+| --- | --- | --- |
+| OpenVLA | ✅ Completed | Scene encoding, Qdrant retrieval, hybrid candidate generation, and action response |
+| π0 | ✅ Completed | Chunk-level candidate verification in the preserved research implementation |
+| π0.5 / π0-FAST | ⏳ In progress | Public end-to-end workflows are not yet completed |
 
 <a id="architecture"></a>
 ## 🧠 Architecture Overview
@@ -484,10 +511,12 @@ Measure cold start separately from steady-state performance. The retrieval servi
 
 - [x] Publish an independently runnable source-only repository.
 - [x] Validate OpenVLA embedding, Qdrant retrieval, and a 4×7 action response.
+- [x] Preserve the π0 chunk-level retrieval and verification research path.
 - [x] Adopt the RoboNix Mulan PSL v2 license and remove citation placeholders.
 - [ ] Publish a small public two-view example dataset and prebuilt Qdrant index.
 - [ ] Add container images and authenticated production API examples.
 - [ ] Add incremental memory deduplication, compression, and expiration policies.
+- [ ] Complete public end-to-end workflows for π0.5 and π0-FAST.
 - [ ] Provide a versioned RoboNix service adapter.
 
 <a id="citation"></a>
